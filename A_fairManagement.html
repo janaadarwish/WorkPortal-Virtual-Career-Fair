@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WorkPortal | Global Admin Console</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+      :root {
+        --brand-green: #28a745;
+        --brand-green-hover: #218838;
+        --brand-slate: #1a1d21;
+        --brand-light: #f4f7f6;
+        --warning-orange: #fd7e14;
+        --danger-red: #dc3545;
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      }
+
+      body {
+        background-color: var(--brand-light);
+        font-family:
+          "Inter",
+          -apple-system,
+          sans-serif;
+        color: #333;
+        overflow-x: hidden;
+      }
+
+      .dashboard-wrapper {
+        display: flex;
+        min-height: 100vh;
+      }
+
+      .sidebar {
+        width: 260px;
+        background: var(--brand-slate);
+        color: white;
+        padding: 2rem 1.5rem;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        z-index: 1000;
+      }
+
+      .nav-link {
+        color: #adb5bd;
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+        margin-bottom: 0.4rem;
+        font-weight: 500;
+        transition: 0.3s;
+        text-decoration: none;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        background: rgba(40, 167, 69, 0.15);
+        color: var(--brand-green) !important;
+      }
+
+      .main-content {
+        flex: 1;
+        padding: 2.5rem;
+        max-width: 1600px;
+      }
+
+      .card {
+        border: none;
+        border-radius: 14px;
+        box-shadow: var(--card-shadow);
+        margin-bottom: 1.5rem;
+        background: white;
+      }
+
+      .status-badge {
+        padding: 0.4rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .badge-live {
+        background: #e6f4ea;
+        color: var(--brand-green);
+      }
+      .badge-draft {
+        background: #f1f3f4;
+        color: #5f6368;
+      }
+
+      .btn-green {
+        background: var(--brand-green);
+        color: white;
+        border: none;
+        font-weight: 600;
+      }
+      .btn-green:hover {
+        background: var(--brand-green-hover);
+        color: white;
+      }
+
+      .tier-gold {
+        border-left: 5px solid #ffd700;
+      }
+      .tier-silver {
+        border-left: 5px solid #c0c0c0;
+      }
+
+      .alert-item {
+        border-left: 4px solid var(--danger-red);
+        background: #fff5f5;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 0.75rem;
+      }
+
+      .schedule-block {
+        border-left: 3px solid var(--brand-green);
+        background: #f8f9fa;
+        padding: 0.75rem;
+        margin-bottom: 0.5rem;
+        border-radius: 4px;
+        font-size: 0.85rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dashboard-wrapper">
+      <nav class="sidebar">
+        <h4 class="fw-bold mb-5">
+          <span class="text-white">WorkPortal</span> <br />
+          <span class="text-success">Admin</span>
+        </h4>
+        <a href="A_adminDashboard.html" class="nav-link">System Health</a>
+        <a href="A_companyApplications.html" class="nav-link"
+          >Manage Companies</a
+        >
+        <a href="A_userManagement.html" class="nav-link">Users management</a>
+        <a href="A_fairManagement.html" class="nav-link active">Fair Traffic</a>
+        <a href="A_reports.html" class="nav-link">Reporting</a>
+        <a href="index.html" class="nav-link text-danger">Sign Out</a>
+      </nav>
+
+      <main class="main-content">
+        <header
+          class="d-flex justify-content-between align-items-center mb-5 bg-white p-3 rounded-4 shadow-sm"
+        >
+          <div>
+            <h3 class="fw-bold mb-0">Spring Career Expo 2026</h3>
+            <span class="status-badge badge-live"
+              >🟢 Live System Operational</span
+            >
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-warning btn-sm fw-bold">Pause Fair</button>
+            <button class="btn btn-danger btn-sm fw-bold">End Event</button>
+            <button class="btn btn-dark btn-sm fw-bold">
+              Broadcast Announcement
+            </button>
+          </div>
+        </header>
+
+        <div class="row g-4 mb-4">
+          <div class="col-md-3">
+            <div class="card p-4 text-center">
+              <h2 class="fw-bold mb-0">1,248</h2>
+              <p class="small text-muted mb-0">Students Active</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card p-4 text-center">
+              <h2 class="fw-bold mb-0">56</h2>
+              <p class="small text-muted mb-0">Companies Live</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card p-4 text-center">
+              <h2 class="fw-bold mb-0">84</h2>
+              <p class="small text-muted mb-0">Live Sessions</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card p-4 text-center">
+              <h2 class="fw-bold mb-0">14m</h2>
+              <p class="small text-muted mb-0">Avg. Queue Wait</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="card p-4 mb-4" id="builder">
+              <h5 class="fw-bold mb-4">Event Configuration</h5>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="small fw-bold">Fair Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    value="Spring Career Expo 2026"
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label class="small fw-bold">Registration Deadline</label>
+                  <input type="date" class="form-control" />
+                </div>
+                <div class="col-md-12 text-end mt-3">
+                  <button class="btn btn-outline-dark btn-sm">
+                    Duplicate Fair
+                  </button>
+                  <button class="btn btn-green btn-sm px-4">
+                    Save Changes
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card p-4 mb-4" id="companies">
+              <h5 class="fw-bold mb-4">Company Management</h5>
+              <table class="table align-middle">
+                <thead class="table-light">
+                  <tr>
+                    <th>Company</th>
+                    <th>Tier</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="tier-gold">
+                    <td><strong>Google</strong></td>
+                    <td>
+                      <span class="badge bg-warning text-dark">Gold</span>
+                    </td>
+                    <td>
+                      <span class="status-badge badge-live">Approved</span>
+                    </td>
+                    <td>
+                      <button class="btn btn-sm btn-light border">
+                        Edit Slots
+                      </button>
+                    </td>
+                  </tr>
+                  <tr class="tier-silver">
+                    <td><strong>Tesla</strong></td>
+                    <td><span class="badge bg-secondary">Silver</span></td>
+                    <td>
+                      <span class="status-badge badge-live">Approved</span>
+                    </td>
+                    <td>
+                      <button class="btn btn-sm btn-light border">
+                        Edit Slots
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="card p-4 mb-4">
+              <h5 class="fw-bold mb-4">Live Schedule Builder</h5>
+              <div class="schedule-block d-flex justify-content-between">
+                <span
+                  ><strong>10:00 - 11:00</strong> | Keynote: Future of AI</span
+                >
+                <span class="badge bg-dark">Main Stage</span>
+              </div>
+              <div class="schedule-block d-flex justify-content-between">
+                <span
+                  ><strong>11:00 - 13:00</strong> | Open Booth Sessions</span
+                >
+                <span class="badge bg-success">All Companies</span>
+              </div>
+              <button class="btn btn-outline-success btn-sm w-100 mt-2">
+                + Add Session Block
+              </button>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="card p-4 mb-4 border-danger">
+              <h6 class="fw-bold text-danger mb-3">System Alerts</h6>
+              <div class="alert-item">
+                <small class="fw-bold d-block">Tesla Booth Congestion</small>
+                <span style="font-size: 0.8rem"
+                  >Wait time exceeds 30 minutes.</span
+                >
+              </div>
+              <div
+                class="alert-item"
+                style="
+                  border-left-color: var(--warning-orange);
+                  background: #fffaf2;
+                "
+              >
+                <small class="fw-bold d-block text-warning">Server Load</small>
+                <span style="font-size: 0.8rem">Memory usage at 82%.</span>
+              </div>
+            </div>
+
+            <div class="card p-4 mb-4">
+              <h6 class="fw-bold mb-3">Live Traffic</h6>
+              <div
+                style="height: 150px; background: #f8f9fa; border-radius: 8px"
+                class="d-flex align-items-end p-2 gap-1"
+              >
+                <div class="bg-success w-25" style="height: 40%"></div>
+                <div class="bg-success w-25" style="height: 70%"></div>
+                <div class="bg-success w-25" style="height: 100%"></div>
+                <div class="bg-success w-25" style="height: 80%"></div>
+              </div>
+              <p class="small text-center text-muted mt-2">
+                Peak usage: 12:45 PM
+              </p>
+            </div>
+
+            <div class="card p-4 mb-4">
+              <h6 class="fw-bold mb-3">Quick Reports</h6>
+              <div class="d-grid gap-2">
+                <button class="btn btn-sm btn-outline-dark text-start">
+                  📊 Engagement Per Booth
+                </button>
+                <button class="btn btn-sm btn-outline-dark text-start">
+                  👥 Attendance PDF
+                </button>
+                <button class="btn btn-sm btn-outline-dark text-start">
+                  📉 Queue Drop-off CSV
+                </button>
+              </div>
+            </div>
+
+            <div class="card p-4">
+              <h6 class="fw-bold mb-3">Active Booths (56)</h6>
+              <div
+                class="d-flex justify-content-between small border-bottom py-2"
+              >
+                <span>A-1 (Google)</span>
+                <span class="text-success">Active</span>
+              </div>
+              <div
+                class="d-flex justify-content-between small border-bottom py-2"
+              >
+                <span>A-2 (Tesla)</span>
+                <span class="text-success">Active</span>
+              </div>
+              <button class="btn btn-link text-success btn-sm p-0 mt-2">
+                Manage All Booths →
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

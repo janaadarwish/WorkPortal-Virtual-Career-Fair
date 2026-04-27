@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | WorkPortal</title>
+    
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-icons.css" rel="stylesheet"> 
+    
+    <style>
+        :root {
+            --brand-green: #28a745;
+            --brand-slate: #001d3f;
+            --bg-light: #f8f9fa;
+            --ai-purple: #6f42c1;
+        }
+
+        body { background-color: var(--bg-light); font-family: 'Inter', sans-serif; }
+
+        .main-content { margin-left: 260px; padding: 2rem; }
+
+        /* 🧭 1. Profile Header */
+        .profile-header {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            background: #e9ecef;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .resume-card {
+            border: 2px dashed #dee2e6;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+        .resume-card:hover { border-color: var(--brand-green); background: #f0fdf4; }
+
+        .gap-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f3e8ff 100%);
+            border: 1px solid #dcd3ff;
+        }
+
+        .skill-tag {
+            background: white;
+            border: 1px solid #dee2e6;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .missing-skill {
+            background: rgba(111, 66, 193, 0.1);
+            color: var(--ai-purple);
+            border: 1px dashed var(--ai-purple);
+        }
+
+        .strength-meter {
+            height: 10px;
+            border-radius: 10px;
+            background: #e9ecef;
+        }
+
+        .sidebar {
+            width: 260px; background: var(--brand-slate); color: white;
+            padding: 2rem 1.5rem; position: fixed; height: 100vh;
+        }
+        .nav-link { color: #adb5bd; padding: 0.8rem; text-decoration: none; display: block; border-radius: 10px; }
+        .nav-link:hover, .nav-link.active { background: rgba(255,255,255,0.1); color: var(--brand-green); }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <h4 class="fw-bold mb-5">
+            <span class="text-white">WorkPortal</span> <br />
+            <span class="text-success" style="font-size: 1.2rem;">Student</span>
+        </h4>
+        <div class="nav flex-column">
+            <a href="S_studentDashboard.html" class="nav-link "> Dashboard</a>
+            <a href="S_fair.html" class="nav-link"> Browse Fairs</a>
+            <a href="S_liveSessions.html" class="nav-link"> Live Sessions</a>
+            <a href="S_chat.html" class="nav-link"> Chat</a>
+            <a href="S_profile.html" class="nav-link active"> Profile</a>
+            <a href="index.html" class="nav-link text-danger mt-auto"> Logout</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        
+        <div class="profile-header">
+            <div class="row align-items-center">
+                <div class="col-md-auto">
+                    <div class="profile-pic d-flex align-items-center justify-content-center">
+                        <i class="bi bi-person-fill fs-1 text-muted"></i>
+                    </div>
+                </div>
+                <div class="col">
+                    <h2 class="fw-bold mb-1">Alex Johnson</h2>
+                    <p class="text-muted mb-2">Computer Science Student • Class of 2026</p>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-sm btn-outline-dark"><i class="bi bi-pencil me-1"></i> Edit Profile</button>
+                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-eye me-1"></i> Preview as Recruiter</button>
+                        <button class="btn btn-sm btn-success bg-opacity-75"><i class="bi bi-download me-1"></i> CV</button>
+                    </div>
+                </div>
+                <div class="col-md-3 text-end">
+                    <small class="text-muted d-block mb-1">Profile Completion</small>
+                    <h4 class="fw-bold text-success mb-2">78%</h4>
+                    <div class="progress strength-meter">
+                        <div class="progress-bar bg-success" style="width: 78%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                
+                <div class="card p-4 gap-card mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h5 class="fw-bold mb-0"><i class="bi bi-cpu me-2 text-primary"></i> AI Skill Engine</h5>
+                        <span class="badge bg-purple text-white" style="background: var(--ai-purple);">AI Insights Active</span>
+                    </div>
+
+                    <div class="mb-4">
+                        <h6 class="small fw-bold text-muted text-uppercase mb-3">Current Expertise</h6>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">React.js</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">UI/UX</span>
+                            <button class="btn btn-sm text-primary">+ Add Skill</button>
+                        </div>
+                    </div>
+
+                    <div class="p-3 bg-white rounded-4 border">
+                        <h6 class="small fw-bold text-danger text-uppercase mb-3"><i class="bi bi-lightning-charge-fill"></i> Missing Skills for Target Roles</h6>
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            <span class="skill-tag missing-skill">Docker</span>
+                            <span class="skill-tag missing-skill">AWS S3</span>
+                            <span class="skill-tag missing-skill">System Design</span>
+                        </div>
+                        <div class="alert alert-info py-2 small mb-0 border-0">
+                            <i class="bi bi-graph-up-arrow me-2"></i> 
+                            <strong>Insight:</strong> Adding <strong>Docker</strong> to your profile increases your match score for <strong>Backend Internships</strong> by <span class="text-success fw-bold">+18%</span>.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card p-4 mb-4">
+                    <h5 class="fw-bold mb-3">Resume Management</h5>
+                    <div class="resume-card p-4 text-center">
+                        <i class="bi bi-file-earmark-pdf fs-1 text-danger mb-2"></i>
+                        <h6 class="fw-bold mb-1">Alex_Johnson_Resume_2026.pdf</h6>
+                        <p class="small text-muted mb-3">Last updated: 2 days ago</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <button class="btn btn-sm btn-outline-dark">Replace File</button>
+                            <button class="btn btn-sm btn-light">Preview</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card p-4">
+                    <div class="d-flex justify-content-between mb-4">
+                        <h5 class="fw-bold">Portfolio & Projects</h5>
+                        <button class="btn btn-sm btn-success text-white">+ Add Project</button>
+                    </div>
+                    
+                    <div class="p-3 border rounded-4 mb-3">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="fw-bold mb-1">Web-Based Accounting System</h6>
+                                <p class="small text-muted">A financial management tool using Vanilla JS and LocalStorage for journal entries.</p>
+                                <div class="d-flex gap-1">
+                                    <span class="badge bg-light text-dark border">JavaScript</span>
+                                    <span class="badge bg-light text-dark border">CSS3</span>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn btn-link btn-sm text-muted" data-bs-toggle="dropdown"><i class="bi bi-three-dots-vertical"></i></button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item small" href="#">Edit</a></li>
+                                    <li><a class="dropdown-item small text-danger" href="#">Delete</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                
+                <div class="card p-4 mb-4 bg-dark text-white border-0 shadow">
+                    <h6 class="fw-bold text-uppercase small text-success mb-3">AI Recommendations</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-3 d-flex gap-2">
+                            <i class="bi bi-check2-circle text-success"></i>
+                            <span>Add 2 more backend projects to rank #1 for "Server Engineer" roles.</span>
+                        </li>
+                        <li class="mb-3 d-flex gap-2">
+                            <i class="bi bi-plus-circle text-warning"></i>
+                            <span>Include a GitHub link to verify your code quality.</span>
+                        </li>
+                        <li class="d-flex gap-2">
+                            <i class="bi bi-exclamation-triangle text-info"></i>
+                            <span>Update your "About Me" with cloud-computing interests.</span>
+                        </li>
+                    </ul>
+                    <button class="btn btn-success btn-sm w-100 mt-2">Optimize Now</button>
+                </div>
+
+                <div class="card p-4">
+                    <h6 class="fw-bold mb-3 text-uppercase small text-muted">Privacy & Visibility</h6>
+                    <div class="mb-3">
+                        <label class="small fw-bold">Profile Visibility</label>
+                        <select class="form-select form-select-sm mt-1">
+                            <option>Visible to Recruiters</option>
+                            <option>Public (Discovery Mode)</option>
+                            <option>Private</option>
+                        </select>
+                    </div>
+                    <div class="form-check form-switch mb-2">
+                        <input class="form-check-input" type="checkbox" checked id="resumeShare">
+                        <label class="form-check-label small" for="resumeShare">Allow Resume Downloads</label>
+                    </div>
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" id="hideGPA">
+                        <label class="form-check-label small" for="hideGPA">Hide GPA from Profile</label>
+                    </div>
+                    <button class="btn btn-light btn-sm w-100">Save Preferences</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

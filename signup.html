@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WorkPortal | Create Account</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+      :root {
+        --brand-green: #28a745;
+        --brand-green-dark: #1e7e34;
+        --transition-speed: 0.4s;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial,
+          sans-serif;
+        background-color: #ffffff;
+        margin: 0;
+        overflow-x: hidden;
+      }
+
+      .signup-container {
+        min-height: 100vh;
+        display: flex;
+      }
+
+      .signup-visual {
+        flex: 1;
+        background:
+          linear-gradient(rgba(40, 167, 69, 0.8), rgba(30, 126, 52, 0.9)),
+          url("assets/background.jpg");
+        background-size: cover;
+        background-position: center;
+        display: none; /* Hidden on mobile */
+        flex-direction: column;
+        justify-content: center;
+        padding: 4rem;
+        color: white;
+      }
+
+      .signup-form-side {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        background: #f8f9fa;
+      }
+
+      @media (min-width: 992px) {
+        .signup-visual {
+          display: flex;
+        }
+      }
+
+      @keyframes slideLeft {
+        from {
+          opacity: 0;
+          transform: translateX(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .form-content {
+        width: 100%;
+        max-width: 450px;
+        animation: slideLeft 0.6s ease-out forwards;
+      }
+
+      .btn-green {
+        background: var(--brand-green);
+        color: white;
+        border: none;
+        padding: 0.8rem;
+        border-radius: 0.75rem;
+        font-weight: bold;
+        transition: all var(--transition-speed) ease;
+      }
+
+      .btn-green:hover {
+        background: var(--brand-green-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        color: white;
+      }
+
+      .form-control {
+        border-radius: 0.75rem;
+        padding: 0.75rem 1rem;
+        border: 1px solid #dee2e6;
+        transition: border-color 0.3s;
+      }
+
+      .form-control:focus {
+        border-color: var(--brand-green);
+        box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.1);
+      }
+
+      .role-pill-group .btn-check:checked + .btn-outline-green {
+        background-color: var(--brand-green);
+        color: white;
+      }
+
+      .btn-outline-green {
+        border-color: var(--brand-green);
+        color: var(--brand-green);
+        border-radius: 0.75rem;
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="signup-container">
+      <div class="signup-visual">
+        <h1 class="display-3 fw-bold mb-4">Join the <br />WorkPortal.</h1>
+        <p class="lead mb-5">
+          Create an account to start managing your professional journey today.
+        </p>
+        <div class="d-flex gap-3">
+          <div class="p-3 border border-white rounded-3 opacity-75">
+            <small class="d-block fw-bold">10k+</small>
+            <small>Students</small>
+          </div>
+          <div class="p-3 border border-white rounded-3 opacity-75">
+            <small class="d-block fw-bold">500+</small>
+            <small>Recruiters</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="signup-form-side">
+        <div class="form-content">
+          <div class="mb-5">
+            <h2 class="fw-bold">Create Account</h2>
+            <p class="text-muted">Fill in your details to get started.</p>
+          </div>
+
+          <form id="signupForm">
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label small fw-bold">First Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="John"
+                  required
+                />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold">Last Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Doe"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Account Type</label>
+              <div class="btn-group w-100 role-pill-group" role="group">
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="regRole"
+                  id="regStudent"
+                  value="student"
+                  checked
+                />
+                <label class="btn btn-outline-green" for="regStudent"
+                  >Student</label
+                >
+
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="regRole"
+                  id="regRecruiter"
+                  value="recruiter"
+                />
+                <label class="btn btn-outline-green" for="regRecruiter"
+                  >Recruiter</label
+                >
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Email Address</label>
+              <input
+                type="email"
+                class="form-control"
+                placeholder="john@university.edu"
+                required
+              />
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label small fw-bold">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Minimum 8 characters"
+                required
+              />
+              <div class="form-text small">
+                Must include a symbol and a number.
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-green w-100 mb-4">
+              Create Free Account
+            </button>
+
+            <div class="text-center">
+              <span class="small text-muted">Already have an account?</span>
+              <a
+                href="login.html"
+                class="small text-green fw-bold text-decoration-none ms-1"
+                style="color: var(--brand-green)"
+                >Log In</a
+              >
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("signupForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const role = document.querySelector(
+            'input[name="regRole"]:checked',
+          ).value;
+          alert(
+            "Account created successfully as a " +
+              role +
+              "!\n\nCheck your local email for verification.",
+          );
+        });
+    </script>
+  </body>
+</html>

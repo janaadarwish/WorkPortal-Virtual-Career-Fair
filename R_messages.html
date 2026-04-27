@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkPortal | Interview Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --brand-slate: #022b01;
+            --brand-green: #45d667;
+            --bg-light: #f8faf9;
+            --border-color: #eaeef0;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .sidebar-nav {
+            width: 240px;
+            background: var(--brand-slate);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem 1rem;
+            flex-shrink: 0;
+        }
+
+        .sidebar-nav .nav-link {
+            color: #a0aec0;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            margin-bottom: 0.3rem;
+            transition: 0.2s;
+        }
+
+        .sidebar-nav .nav-link:hover, .sidebar-nav .nav-link.active {
+            background: rgba(255,255,255,0.1);
+            color: var(--brand-green) !important;
+        }
+
+        .chat-list-pane {
+            width: 320px;
+            background: white;
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .chat-item {
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .chat-item:hover { background: #f9fbf9; }
+        .chat-item.active { 
+            background: #f0f7f1; 
+            border-left: 4px solid var(--brand-green); 
+        }
+
+        .main-console {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            background: white;
+        }
+
+        .console-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #chat-window {
+            flex-grow: 1;
+            padding: 2rem;
+            overflow-y: auto;
+            background: #fdfdfd;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .msg {
+            max-width: 75%;
+            padding: 10px 16px;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .msg-recruiter {
+            background: var(--brand-slate);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .msg-candidate {
+            background: #f1f3f5;
+            color: #1a202c;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .eval-panel {
+            width: 300px;
+            background: #fcfdfc;
+            border-left: 1px solid var(--border-color);
+            padding: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .mt-auto { margin-top: auto; }
+    </style>
+</head>
+<body>
+
+<div class="d-flex h-100 w-100">
+    
+    <nav class="sidebar-nav">
+         <h4 class="mb-5">WorkPortal<br><span style="color: var(--brand-green)">Recruiter</span></h4>
+        <div class="nav flex-column">
+        <div class="nav flex-column h-100">
+            <a href="R_recruiterDashboard.html" class="nav-link">Dashboard</a>
+            <a href="R_candidatePipeline.html" class="nav-link">Candidates</a>
+            <a href="R_schedule.html" class="nav-link">Schedule</a>
+            <a href="R_analytics.html" class="nav-link">Analytics</a>
+            <a href="R_messages.html" class="nav-link active">Messages</a>
+            <a href="R_profile.html" class="nav-link">Profile</a>
+            <a href="index.html" class="nav-link text-danger">Logout</a>
+        </div>
+    </nav>
+
+    <aside class="chat-list-pane">
+        <div class="p-3">
+            <input type="text" class="form-control form-control-sm bg-light border-0" placeholder="Search candidates...">
+        </div>
+        <div class="overflow-auto flex-grow-1">
+            <div class="chat-item active" onclick="switchUser('Sarah Jenkins', 'SJ', '92%')">
+                <div class="d-flex justify-content-between">
+                    <span class="fw-bold">Sarah Jenkins</span>
+                    <small class="text-muted">2m</small>
+                </div>
+                <small class="text-muted text-truncate d-block">I'll send the files over now...</small>
+            </div>
+            <div class="chat-item" onclick="switchUser('James Wilson', 'JW', '85%')">
+                <div class="d-flex justify-content-between">
+                    <span class="fw-bold">James Wilson</span>
+                    <small class="text-muted">1h</small>
+                </div>
+                <small class="text-muted d-block">Looking forward to it!</small>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-console">
+        <header class="console-header">
+            <div class="d-flex align-items-center">
+                <div id="user-avatar" class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center fw-bold me-3" style="width: 45px; height: 45px;">SJ</div>
+                <div>
+                    <h6 id="header-name" class="mb-0 fw-bold">Sarah Jenkins</h6>
+                    <small id="header-match" class="text-success fw-bold">Match: 92%</small>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-outline-secondary btn-sm">Archive</button>
+                <button class="btn btn-danger btn-sm">End Session</button>
+            </div>
+        </header>
+
+        <div id="chat-window">
+            <div class="msg msg-candidate">Hello! I'm here for the technical interview.</div>
+            <div class="msg msg-recruiter">Welcome! Let's get started.</div>
+        </div>
+
+        <form id="chat-form" class="p-3 border-top">
+            <div class="input-group">
+                <input type="text" id="msg-input" class="form-control border-0 bg-light p-3" placeholder="Write a message..." autocomplete="off">
+                <button class="btn btn-success px-4 fw-bold" style="background: var(--brand-slate); color:white; border-radius: 0 10px 10px 0;">Send</button>
+            </div>
+        </form>
+    </main>
+
+    <aside class="eval-panel">
+        <h6 class="fw-bold text-muted small mb-4">RECRUITER TOOLS</h6>
+        <div class="mb-4">
+            <label class="small fw-bold">Private Notes</label>
+            <textarea class="form-control border-0 bg-white shadow-sm mt-1" rows="12" placeholder="Start typing notes..."></textarea>
+        </div>
+        <div class="d-grid gap-2">
+            <button class="btn btn-success fw-bold" style="background: var(--brand-green); color: var(--brand-slate); border:none;">Shortlist Candidate</button>
+            <button class="btn btn-light border fw-bold">Request Follow-up</button>
+        </div>
+    </aside>
+
+</div>
+
+<script>
+    const form = document.getElementById('chat-form');
+    const input = document.getElementById('msg-input');
+    const window_ = document.getElementById('chat-window');
+
+    function switchUser(name, initials, match) {
+        document.getElementById('header-name').innerText = name;
+        document.getElementById('user-avatar').innerText = initials;
+        document.getElementById('header-match').innerText = `Match: ${match}`;
+        
+        window_.innerHTML = `<div class="text-center my-3 small text-muted">Viewing chat with ${name}</div>`;
+        
+        document.querySelectorAll('.chat-item').forEach(el => el.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+    }
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if(input.value.trim() !== "") {
+            const div = document.createElement('div');
+            div.className = "msg msg-recruiter";
+            div.innerText = input.value;
+            window_.appendChild(div);
+            input.value = "";
+            window_.scrollTop = window_.scrollHeight;
+        }
+    });
+</script>
+
+</body>
+</html>

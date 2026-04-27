@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard | WorkPortal</title>
+    
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-icons.css" rel="stylesheet"> 
+    
+    <style>
+        :root {
+            --brand-green: #28a745;
+            --brand-green-hover: #218838;
+            --brand-slate: #001d3f;
+            --bg-light: #f4f7f6;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        body { 
+            background-color: var(--bg-light); 
+            font-family: 'Inter', system-ui, -apple-system, sans-serif; 
+            margin: 0; 
+            overflow-x: hidden;
+        }
+        .sidebar {
+            width: 260px;
+            background: var(--brand-slate);
+            color: white;
+            padding: 2rem 1.5rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .sidebar h4 { font-weight: 800; letter-spacing: -1px; margin-bottom: 2.5rem; }
+
+        .nav-link {
+            color: #adb5bd;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: rgba(40, 167, 69, 0.15);
+            color: var(--brand-green) !important;
+        }
+
+        .main-content {
+            margin-left: 260px;
+            width: calc(100% - 260px);
+            min-height: 100vh;
+        }
+
+        .booth-card {
+            border: none;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+        .booth-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+        }
+
+        .badge-sponsorship {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .progress { height: 8px; border-radius: 10px; }
+
+        .btn-join {
+            background-color: var(--brand-green);
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+        .btn-join:hover { background-color: var(--brand-green-dark); color: white; }
+    </style>
+</head>
+<body>
+
+<div class="d-flex">
+    <nav class="sidebar">
+        <h4 class="fw-bold mb-5">
+            <span class="text-white">WorkPortal</span> <br />
+            <span class="text-success" style="font-size: 1.2rem;">Student</span>
+        </h4>
+        <div class="nav flex-column">
+            <a href="S_studentDashboard.html" class="nav-link "> Dashboard</a>
+            <a href="S_fair.html" class="nav-link active"> Browse Fairs</a>
+            <a href="S_liveSessions.html" class="nav-link"> Live Sessions</a>
+            <a href="S_chat.html" class="nav-link"> chat</a>
+            <a href="S_profile.html" class="nav-link"> Profile</a>
+            <a href="index.html" class="nav-link text-danger mt-auto"> Logout</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 px-4">
+            <div class="container-fluid">
+                <span class="navbar-text text-white ms-auto">
+                    Welcome, <strong>Alex</strong>
+                    <div class="rounded-circle bg-secondary d-inline-block ms-2" style="width: 30px; height: 30px; vertical-align: middle;"></div>
+                </span>
+            </div>
+        </nav>
+
+        <div class="container-fluid px-4 mb-5">
+            <header class="row mb-4 g-3">
+                <div class="col-md-8">
+                    <h2 class="fw-bold mb-1">Spring Tech Career Fair 2026</h2>
+                    <p class="text-muted"><span class="badge bg-success me-2">LIVE NOW</span> Ends in 4 hours • 120 Companies</p>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <div class="p-3 bg-white rounded shadow-sm border">
+                        <small class="text-muted d-block">Global Avg. Wait</small>
+                        <span class="h4 fw-bold text-success">~12 Mins</span>
+                    </div>
+                </div>
+            </header>
+
+            <section class="mb-5">
+                <h5 class="fw-bold mb-3">✨ Recommended for You</h5>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="card p-3 booth-card border-start border-success border-4 shadow-sm">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="badge bg-light text-success mb-2">98% Match Score</span>
+                                    <h5 class="mb-0">Google Cloud</h5>
+                                    <small class="text-muted">Matches your "Python" & "Cloud" skills</small>
+                                </div>
+                                <button class="btn btn-sm btn-outline-success">Quick Join</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <input type="text" class="form-control form-control-lg shadow-sm" placeholder="Search skills, roles, or companies...">
+                </div>
+                <div class="col-md-4">
+                    <select class="form-select form-select-lg shadow-sm">
+                        <option>Filter by Queue: All</option>
+                        <option>Low Wait (< 5 mins)</option>
+                        <option>Sponsoring Roles</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 booth-card shadow-sm">
+                        <div class="card-body">
+                            <span class="badge bg-warning text-dark badge-sponsorship">Gold Sponsor</span>
+                            <h5 class="card-title fw-bold">Adobe</h5>
+                            <h6 class="card-subtitle mb-3 text-muted">Creative Tech • San Jose</h6>
+                            <div class="mb-3">
+                                <small class="text-muted d-block mb-1">Roles: UI/UX Intern, Frontend Eng.</small>
+                                <div class="d-flex align-items-center">
+                                    <span class="status-indicator bg-success"></span>
+                                    <small>🟢 Active • 15m wait</small>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <small class="fw-bold">Queue Capacity</small>
+                                    <small class="text-muted">12/20 slots</small>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" style="width: 60%"></div>
+                                </div>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-join" onclick="showQueueModal('Adobe')">Join Queue</button>
+                                <button class="btn btn-light btn-sm text-muted">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="queueModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title fw-bold">Confirm Joining Queue</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center p-4">
+                <p>You are about to join the line for <strong id="modalCompanyName">Company</strong>.</p>
+                <div class="alert alert-info py-2 small">
+                    Estimated Position: <strong>#5</strong><br>
+                    Est. Wait Time: <strong>~15 minutes</strong>
+                </div>
+                <div class="text-start mb-3">
+                    <label class="form-label small fw-bold">Resume to Share:</label>
+                    <select class="form-select form-select-sm">
+                        <option>Software_Engineer_Resume.pdf</option>
+                        <option>Product_Design_Resume.pdf</option>
+                    </select>
+                </div>
+                <button class="btn btn-green w-100 mb-2" style="background-color: var(--brand-green); color: white; border:none; padding:10px; border-radius:8px;" onclick="confirmQueue()">Join Now</button>
+                <button class="btn btn-link btn-sm text-decoration-none text-muted" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+
+<script>
+    const queueModal = new bootstrap.Modal(document.getElementById('queueModal'));
+    function showQueueModal(companyName) {
+        document.getElementById('modalCompanyName').innerText = companyName;
+        queueModal.show();
+    }
+    function confirmQueue() {
+        alert("You have successfully joined the queue!");
+        queueModal.hide();
+    }
+</script>
+
+</body>
+</html>

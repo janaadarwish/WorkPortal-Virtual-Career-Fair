@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkPortal | Recruiter Console</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --brand-slate: #022b01;
+            --brand-green: #45d667;
+            --sidebar-width: 240px;
+            --queue-width: 350px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .dashboard-wrapper {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--brand-slate);
+            color: white;
+            padding: 1.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .sidebar h4 {
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .nav-link {
+            color: #adb5bd;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.2rem;
+            font-weight: 500;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: rgba(69, 214, 103, 0.1);
+            color: var(--brand-green) !important;
+        }
+
+        .queue-column {
+            width: var(--queue-width);
+            background: white;
+            border-right: 1px solid #dee2e6;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .candidate-item {
+            padding: 1.25rem;
+            border-bottom: 1px solid #f0f2f5;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .candidate-item:hover { background: #f8f9fa; }
+        .candidate-item.selected { 
+            background: rgba(69, 214, 103, 0.08);
+            border-left: 4px solid var(--brand-green);
+        }
+
+        main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            background: #f8f9fa;
+            overflow: hidden;
+        }
+
+        .candidate-detail {
+            padding: 2rem;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        /* Components */
+        .btn-green {
+            background-color: var(--brand-green);
+            border-color: var(--brand-green);
+            color: #022b01 !important;
+        }
+        
+        .btn-green:hover {
+            background-color: #38c158;
+            border-color: #38c158;
+        }
+
+        .metric-card {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+            text-align: center;
+        }
+
+        .skill-badge {
+            background-color: rgba(69, 214, 103, 0.2);
+            color: #022b01;
+            border: 1px solid var(--brand-green);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard-wrapper">
+    <nav class="sidebar">
+         <h4 class="mb-5">WorkPortal<br><span style="color: var(--brand-green)">Recruiter</span></h4>
+        <div class="nav flex-column">
+        <div class="nav flex-column h-100">
+            <a href="R_recruiterDashboard.html" class="nav-link active">Dashboard</a>
+            <a href="R_candidatePipeline.html" class="nav-link">Candidates</a>
+            <a href="R_schedule.html" class="nav-link">Schedule</a>
+            <a href="R_analytics.html" class="nav-link">Analytics</a>
+            <a href="R_messages.html" class="nav-link">Messages</a>
+            <a href="R_profile.html" class="nav-link">Profile</a>
+            <a href="index.html" class="nav-link text-danger">Logout</a>
+        </div>
+    </nav>
+
+    <section class="queue-column">
+        <div class="p-4 border-bottom bg-light">
+            <h5 class="fw-bold mb-3">Live Queue</h5>
+            <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-success flex-grow-1" style="background-color: var(--brand-green); border:none; color:#022b01; font-weight:bold;">Resume</button>
+                <button class="btn btn-sm btn-outline-secondary flex-grow-1">Pause</button>
+            </div>
+        </div>
+        
+        <div class="overflow-auto flex-grow-1">
+            <div class="candidate-item selected" data-name="Sarah Jenkins" data-role="Software Engineering Intern" data-skills="Python, React, AWS" data-score="92">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h6 class="fw-bold mb-1">Sarah Jenkins</h6>
+                    <span class="badge rounded-pill bg-light text-dark border">92%</span>
+                </div>
+                <p class="small text-muted mb-0">Python, React, AWS</p>
+            </div>
+
+            <div class="candidate-item" data-name="Marcus Thorne" data-role="UI/UX Designer" data-skills="Figma, Adobe XD, CSS" data-score="88">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h6 class="fw-bold mb-1">Marcus Thorne</h6>
+                    <span class="badge rounded-pill bg-light text-dark border">88%</span>
+                </div>
+                <p class="small text-muted mb-0">Figma, Adobe XD, CSS</p>
+            </div>
+
+            <div class="candidate-item" data-name="Elena Rodriguez" data-role="Data Analyst" data-skills="SQL, R, Tableau" data-score="85">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h6 class="fw-bold mb-1">Elena Rodriguez</h6>
+                    <span class="badge rounded-pill bg-light text-dark border">85%</span>
+                </div>
+                <p class="small text-muted mb-0">SQL, R, Tableau</p>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <header class="bg-white p-3 border-bottom d-flex justify-content-between align-items-center shadow-sm">
+            <div class="d-flex gap-2">
+                <button class="btn btn-outline-dark btn-sm fw-bold">📄 View Resume</button>
+                <button class="btn btn-outline-danger btn-sm fw-bold">🚩 Flag</button>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <span class="text-muted small fw-bold">SESSION TIMER</span>
+                <div class="badge bg-danger px-3 py-2 fs-6">04:58</div>
+            </div>
+        </header>
+
+        <div class="candidate-detail">
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    <div class="card p-4 mb-4 shadow-sm border-0 rounded-4">
+                        <div class="d-flex justify-content-between align-items-start mb-4">
+                            <div>
+                                <h1 class="fw-bold mb-1" id="display-name">Sarah Jenkins</h1>
+                                <p class="text-muted fs-5" id="display-role">Software Engineering Intern</p>
+                            </div>
+                            <button class="btn btn-green btn-lg fw-bold px-4 rounded-3">Start Interview Chat</button>
+                        </div>
+
+                        <h6 class="fw-bold small text-muted text-uppercase mb-3">Tech Stack</h6>
+                        <div id="display-skills" class="d-flex flex-wrap gap-2 mb-4">
+                            </div>
+
+                        <h6 class="fw-bold small text-muted text-uppercase mb-2">Private Recruiter Notes</h6>
+                        <textarea class="form-control mb-3 bg-light border-0 p-3" rows="5" placeholder="Add observations about the candidate's communication and technical depth..."></textarea>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="metric-card mb-4 shadow-sm">
+                        <div class="small text-muted fw-bold text-uppercase mb-1">Match Score</div>
+                        <h1 class="fw-bold mb-0" style="color: var(--brand-slate);" id="display-score">92%</h1>
+                    </div>
+                    
+                    <div class="card p-4 border-0 shadow-sm rounded-4">
+                        <h6 class="fw-bold mb-3">Quick Actions</h6>
+                        <p class="small text-muted mb-3">Propose a formal follow-up if the chat goes well.</p>
+                        <button class="btn btn-outline-secondary w-100 mb-2 py-2 small fw-bold">Tomorrow 10:00 AM</button>
+                        <button class="btn btn-outline-secondary w-100 mb-2 py-2 small fw-bold">Tomorrow 02:00 PM</button>
+                        <hr>
+                        <button class="btn btn-dark w-100 py-2 fw-bold">Move to Final Round</button>
+                        <button class="btn btn-link text-danger w-100 mt-2 small text-decoration-none">Reject Candidate</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+    const candidates = document.querySelectorAll('.candidate-item');
+    
+    candidates.forEach(item => {
+        item.addEventListener('click', function() {
+
+            candidates.forEach(c => c.classList.remove('selected'));
+            this.classList.add('selected');
+
+            const name = this.getAttribute('data-name');
+            const role = this.getAttribute('data-role');
+            const skills = this.getAttribute('data-skills').split(', ');
+            const score = this.getAttribute('data-score');
+
+            document.getElementById('display-name').innerText = name;
+            document.getElementById('display-role').innerText = role;
+            document.getElementById('display-score').innerText = score + "%";
+
+            const skillsContainer = document.getElementById('display-skills');
+            skillsContainer.innerHTML = ''; 
+            skills.forEach(s => {
+                const badge = document.createElement('span');
+                badge.className = 'skill-badge';
+                badge.innerText = s;
+                skillsContainer.appendChild(badge);
+            });
+        });
+    });
+
+    window.onload = () => {
+        const first = document.querySelector('.candidate-item.selected');
+        if(first) first.click();
+    };
+</script>
+
+</body>
+</html>

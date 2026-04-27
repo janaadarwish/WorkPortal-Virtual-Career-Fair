@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Queue | WorkPortal</title>
+    
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-icons.css" rel="stylesheet"> 
+    
+    <style>
+        :root {
+            --brand-green: #28a745;
+            --brand-green-hover: #218838;
+            --brand-slate: #001d3f;
+            --bg-light: #f4f7f6;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        body { 
+            background-color: var(--bg-light); 
+            font-family: 'Inter', system-ui, -apple-system, sans-serif; 
+            margin: 0; 
+            overflow-x: hidden;
+        }
+        .main-content { margin-left: 260px; padding: 2rem; }
+
+        .queue-header {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-bottom: 5px solid var(--brand-green);
+        }
+
+        .position-display {
+            background: var(--brand-slate);
+            color: white;
+            width: 120px;
+            height: 120px;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid var(--brand-green);
+        }
+
+        .progress-step {
+            height: 12px;
+            border-radius: 10px;
+            background: #e9ecef;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .interview-ready-zone {
+            background: linear-gradient(135deg, #fff 0%, #f0fff4 100%);
+            border: 2px dashed var(--brand-green);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .btn-interview {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        .chat-box {
+            height: 400px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            overflow-y: auto;
+            border: 1px solid #eee;
+        }
+
+        .typing-indicator { font-size: 0.8rem; color: #6c757d; font-style: italic; }
+
+        .sidebar {
+            width: 260px; background: var(--brand-slate); color: white;
+            padding: 2rem 1.5rem; position: fixed; height: 100vh;
+        }
+        .nav-link { color: #adb5bd; padding: 0.8rem; text-decoration: none; display: block; }
+        .nav-link.active { color: var(--brand-green); font-weight: bold; }
+
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <h4 class="fw-bold mb-5">WorkPortal</h4>
+        <div class="nav flex-column">
+            <a href="S_studentDashboard.html" class="nav-link "> Dashboard</a>
+            <a href="S_fair.html" class="nav-link "> Browse Fairs</a>
+            <a href="S_liveSessions.html" class="nav-link active"> Live Sessions</a>
+            <a href="S_chat.html" class="nav-link"> chat</a>
+            <a href="S_profile.html" class="nav-link"> Profile</a>
+            <a href="index.html" class="nav-link text-danger"> Logout</a>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        
+        <div class="queue-header mb-4">
+            <div class="row align-items-center">
+                <div class="col-md-2">
+                    <div class="position-display">
+                        <small class="text-uppercase opacity-75" style="font-size: 0.7rem;">Your Rank</small>
+                        <h1 class="fw-bold mb-0">#04</h1>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2 class="fw-bold mb-1">Google Inc.</h2>
+                    <p class="text-muted mb-3">Role: Software Engineering Intern (2026)</p>
+                    <div class="d-flex gap-3">
+                        <span class="badge bg-success bg-opacity-10 text-success p-2 px-3">Status: In Queue</span>
+                        <span class="badge bg-dark p-2 px-3"><i class="bi bi-people me-1"></i> 12 Candidates Total</span>
+                    </div>
+                </div>
+                <div class="col-md-4 text-md-end border-start">
+                    <p class="text-muted mb-1">Estimated Wait</p>
+                    <h2 class="fw-bold text-success mb-0">~15 Mins</h2>
+                    <small class="text-muted">Queue Speed: <span class="text-primary fw-bold">Moderate</span></small>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8">
+                
+                <div class="card p-4 mb-4">
+                    <div class="d-flex justify-content-between mb-2">
+                        <h6 class="fw-bold">Queue Progress</h6>
+                        <span class="small text-muted">4 / 12 Candidates Ahead</span>
+                    </div>
+                    <div class="progress-step">
+                        <div class="progress-bar bg-success" style="width: 66%"></div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2">
+                        <small class="text-muted"><i class="bi bi-circle-fill text-success small me-1"></i> 🟢 Moving Forward</small>
+                        <small class="text-muted">Updated 10s ago</small>
+                    </div>
+                </div>
+
+                <div class="interview-ready-zone mb-4" id="readyZone">
+                    <div class="mb-4">
+                        <i class="bi bi-camera-video fs-1 text-success"></i>
+                        <h3 class="fw-bold mt-3">Ready when you are!</h3>
+                        <p class="text-muted">The recruiter is finishing up. Your button will activate in ~2 minutes.</p>
+                    </div>
+                    <button class="btn btn-secondary btn-interview px-5 py-3" id="enterBtn" disabled>
+                        🎤 Waiting for Turn...
+                    </button>
+                </div>
+
+                <div class="card p-4 shadow-sm d-none" id="chatPanel">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="fw-bold mb-0">Live Interview Chat</h5>
+                        <div class="badge bg-danger">Time Remaining: 09:45</div>
+                    </div>
+                    <div class="chat-box mb-3">
+                        <div class="text-center my-3 small text-muted">--- Session Started ---</div>
+                        <div class="bg-white p-2 rounded shadow-sm mb-2" style="width: fit-content;">
+                            <strong>Recruiter:</strong> Hello Alex! Please share your portfolio.
+                        </div>
+                    </div>
+                    <p class="typing-indicator mb-2">Recruiter is typing...</p>
+                    <div class="input-group">
+                        <button class="btn btn-outline-secondary"><i class="bi bi-paperclip"></i></button>
+                        <input type="text" class="form-control" placeholder="Type your message...">
+                        <button class="btn btn-success">Send</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                
+                <div class="card p-4 mb-4">
+                    <h6 class="fw-bold mb-3 text-uppercase small text-muted">Booth Insights</h6>
+                    <div class="mb-3">
+                        <small class="text-muted d-block">Avg. Interview Duration</small>
+                        <p class="fw-bold mb-0">10-12 Minutes</p>
+                    </div>
+                    <div class="mb-3">
+                        <small class="text-muted d-block">Hiring Speed</small>
+                        <p class="fw-bold mb-0 text-primary">Fast (3 interviews/hr)</p>
+                    </div>
+                    <hr>
+                    <div class="alert alert-warning py-2 small mb-0">
+                        <i class="bi bi-info-circle me-2"></i> Technical team is taking 5 mins extra today.
+                    </div>
+                </div>
+
+                <div class="card p-4 mb-4">
+                    <h6 class="fw-bold mb-3 text-uppercase small text-muted">Live Updates</h6>
+                    <div class="list-group list-group-flush small">
+                        <div class="list-group-item px-0 border-0 mb-2">
+                            <div class="d-flex gap-2">
+                                <i class="bi bi-bell-fill text-success"></i>
+                                <span>2 candidates ahead of you completed interview.</span>
+                            </div>
+                        </div>
+                        <div class="list-group-item px-0 border-0 mb-2">
+                            <div class="d-flex gap-2">
+                                <i class="bi bi-person-check text-primary"></i>
+                                <span>Recruiter is now available.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button class="btn btn-outline-danger" onclick="showExitModal()"><i class="bi bi-door-open me-2"></i> Leave Queue</button>
+                    <button class="btn btn-light"><i class="bi bi-fast-forward me-2"></i> Skip to Next Opportunity</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exitModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="p-4 text-center">
+                    <i class="bi bi-exclamation-triangle text-danger display-4"></i>
+                    <h4 class="fw-bold mt-3">Are you sure?</h4>
+                    <p class="text-muted">If you leave now, you will lose your position (#04) at Google.</p>
+                    <div class="d-grid gap-2 mt-4">
+                        <button class="btn btn-danger py-2">Yes, Leave Queue</button>
+                        <button class="btn btn-light py-2" data-bs-dismiss="modal">Stay in Line</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+        const exitModal = new bootstrap.Modal(document.getElementById('exitModal'));
+        
+        function showExitModal() { exitModal.show(); }
+
+        setTimeout(() => {
+            const btn = document.getElementById('enterBtn');
+            btn.disabled = false;
+            btn.classList.remove('btn-secondary');
+            btn.classList.add('btn-success');
+            btn.innerHTML = "🎤 Enter Interview Room";
+            document.getElementById('readyZone').style.borderColor = "#28a745";
+            document.getElementById('readyZone').style.background = "#f0fff4";
+        }, 3000);
+
+        document.getElementById('enterBtn').onclick = function() {
+            document.getElementById('readyZone').classList.add('d-none');
+            document.getElementById('chatPanel').classList.remove('d-none');
+        };
+    </script>
+</body>
+</html>

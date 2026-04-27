@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WorkPortal | Split Layout</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+      :root {
+        --brand-green: #28a745;
+        --brand-green-dark: #1e7e34;
+        --transition-speed: 0.3s;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial,
+          sans-serif;
+        background-color: #ffffff;
+        margin: 0;
+      }
+
+      @keyframes fadeInRight {
+        from {
+          opacity: 0;
+          transform: translateX(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .main-container {
+        display: flex;
+        min-height: 100vh;
+        flex-wrap: wrap;
+      }
+
+      .side-visual {
+        flex: 1;
+        min-width: 400px;
+        background:
+          linear-gradient(
+            135deg,
+            rgba(40, 167, 69, 0.9),
+            rgba(20, 80, 35, 0.9)
+          ),
+          url("assets/back2.jpg");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 4rem;
+        color: white;
+      }
+
+      .form-content {
+        flex: 1;
+        min-width: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 4rem;
+        background: #fdfdfd;
+      }
+
+      .login-box {
+        width: 100%;
+        max-width: 400px;
+        animation: fadeInRight 0.6s ease-out;
+      }
+
+      .btn-green {
+        background: var(--brand-green);
+        color: white;
+        border: none;
+        padding: 0.9rem;
+        border-radius: 0.5rem;
+        font-weight: bold;
+        transition: all var(--transition-speed);
+      }
+
+      .btn-green:hover {
+        background: var(--brand-green-dark);
+        box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+        color: white;
+      }
+
+      .role-selector {
+        background: #f1f3f5;
+        padding: 0.4rem;
+        border-radius: 0.75rem;
+        display: flex;
+        gap: 5px;
+      }
+
+      .btn-check:checked + .btn-outline-green {
+        background-color: white;
+        border-color: transparent;
+        color: var(--brand-green);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .btn-outline-green {
+        border: 1px solid transparent;
+        color: #6c757d;
+        flex: 1;
+        border-radius: 0.5rem;
+        font-weight: 600;
+      }
+
+      .feature-item {
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 1.5rem;
+      }
+
+      .mini-circle {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-weight: bold;
+      }
+
+      .form-control {
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        border: 1px solid #dee2e6;
+      }
+
+      .form-control:focus {
+        border-color: var(--brand-green);
+        box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.1);
+      }
+
+      @media (max-width: 768px) {
+        .side-visual {
+          padding: 2rem;
+          min-height: 300px;
+        }
+        .form-content {
+          padding: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="main-container">
+      <section class="side-visual">
+        <h1 class="display-4 fw-bold mb-4">WorkPortal</h1>
+        <p class="lead mb-5 opacity-75">
+          Streamlining professional connections in your local workspace.
+        </p>
+
+        <div class="feature-item">
+          <div class="mini-circle">S</div>
+          <div>
+            <h5 class="mb-1">Students</h5>
+            <p class="small opacity-75 mb-0">
+              Build profiles and track local applications.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="mini-circle">R</div>
+          <div>
+            <h5 class="mb-1">Recruiters</h5>
+            <p class="small opacity-75 mb-0">
+              Manage pipelines and discover top talent.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-item">
+          <div class="mini-circle">A</div>
+          <div>
+            <h5 class="mb-1">Admins</h5>
+            <p class="small opacity-75 mb-0">
+              Secure platform control and analytics.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="form-content">
+        <div class="login-box">
+          <div class="mb-5">
+            <h2 class="fw-bold">Welcome Back</h2>
+            <p class="text-muted">Please enter your details to continue</p>
+          </div>
+
+          <form id="loginForm">
+            <div class="mb-4">
+              <label class="form-label small fw-bold">Select Role</label>
+              <div class="role-selector">
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="userRole"
+                  id="student"
+                  value="student"
+                  checked
+                />
+                <label class="btn btn-outline-green" for="student"
+                  >Student</label
+                >
+
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="userRole"
+                  id="recruiter"
+                  value="recruiter"
+                />
+                <label class="btn btn-outline-green" for="recruiter"
+                  >Recruiter</label
+                >
+
+                <input
+                  type="radio"
+                  class="btn-check"
+                  name="userRole"
+                  id="admin"
+                  value="admin"
+                />
+                <label class="btn btn-outline-green" for="admin">Admin</label>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Email Address</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="name@domain.local"
+                required
+              />
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label small fw-bold">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="••••••••"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn btn-green w-100 mb-4">
+              Sign In
+            </button>
+
+            <div class="text-center">
+              <span class="small text-muted">New user?</span>
+              <a
+                href="signup.html"
+                class="small fw-bold text-decoration-none ms-1"
+                style="color: var(--brand-green)"
+                >Create an account</a
+              >
+            </div>
+          </form>
+
+          <footer class="mt-5 pt-5 text-center">
+            <p class="text-muted small">&copy; 2026 WorkPortal System</p>
+          </footer>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          console.log("Form submitted...");
+
+          const selectedInput = document.querySelector(
+            'input[name="userRole"]:checked',
+          );
+
+          if (!selectedInput) {
+            alert("Please select a role.");
+            return;
+          }
+
+          const role = selectedInput.value;
+          console.log("Role detected:", role);
+
+          switch (role) {
+            case "student":
+              window.location.href = "S_studentDashboard.html";
+              break;
+            case "recruiter":
+              window.location.href = "R_recruiterDashboard.html";
+              break;
+            case "admin":
+              window.location.href = "A_adminDashboard.html";
+              break;
+            default:
+              console.error("No valid role selected");
+          }
+        });
+    </script>
+  </body>
+</html>
