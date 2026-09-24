@@ -1,0 +1,48 @@
+Virtual Career Fair & Networking Hub
+
+A platform specifically for universities to host online career days, where students can join "Booths" and have timed chats with recruiters.
+• Key Features: Digital resume drops, "Booth" queue management, and recruiter dashboards for rating candidates.
+Detailed Project Overview: This is a specialized virtual ecosystem designed for universities to bridge the gap between students and the professional world. Unlike a standard job board, it simulates a live physical career fair. It allows multiple companies to set up virtual "Booths," where students can engage in timed, private interactions with recruiters. The platform emphasizes real-time logistics, automated queue management, and post-fair data analytics to maximize the employment outcomes for the university's graduating class.
+Core Modules
+1. Student Portfolio & Engagement Module: Manages student profiles, dynamic resumes, and fair attendance.
+2. Recruiter & Booth Operations Module: Handles booth customization, representative scheduling, and candidate evaluation.
+3. Real-Time Fair Logistics Module: The engine managing live queues, timed chat sessions, and "Digital Drops."
+4. University Admin & Analytics Module: Provides oversight, fair scheduling, and institutional reporting.
+Design Functions (28 Functions)
+A. Student Identity & Portfolio Management (7 Functions)
+1. Dynamic Resume Versioning: Logic to manage multiple versions of a resume, allowing students to "attach" a specific version to different company booths.
+2. Privacy-Controlled Profile Visibility: An O0 approach to masking sensitive contact data until a recruiter explicitly requests "Full Access."
+3. Skill-Gap Analysis Engine: Logic that compares a student's profile against a company's posted job requirements and suggests missing skills.
+5. Portfolio Media Handler: Managing the secure upload and viewing of diverse project files (e.g., GitHub links, PDF portfolios, Video intros).
+6. Interest-Based Fair Navigator: Logic that highlights specific booths to a student based on their major and pre-set career interests.
+7. Student "Ready-State" Controller: Managing the student's status (Available, In-Chat, Offline) to prevent multiple recruiters from initiating contact.
+B. Booth Logistics & Queue Management (7 Functions)
+8. Automated "Waitroom" Queue Logic: A state-machine that manages the line for a booth, providing students with an "Estimated Wait Time" based on average chat duration.
+9. Priority Queueing (Fast-Pass): Logic that allows recruiters to "invite" high-potential students to the front of the queue based on pre-fair resume screening.
+10. Multi-Representative Load Balancing: Automatically distributing the next student in the queue to the first available recruiter in a specific booth.
+11. "Snooze" & "Pause" Queue Controls: Allowing recruiters to temporarily stop incoming students for breaks without losing the existing queue data.
+13. Booth Capacity Monitor: Logic that prevents a queue from growing beyond a certain limit to manage student expectations.
+14. Queue "Leaver" Protocol: Handling the logic when a student loses connection or manually leaves a queue, ensuring the next person is moved up immediately.
+C. Live Interaction & Networking (7 Functions)
+15. Timed Chat Session Manager: An observer-pattern implementation that manages a 5-to-10 minute countdown and warns both parties before the session expires.
+16. Live Document "Flash-Share": Logic for students to "drop" a specific file directly into the chat interface during the live session.
+17. Post-Chat Transition Logic: A workflow that automatically triggers a "Candidate Rating" form for the recruiter and a "Feedback" form for the student once a session ends.
+18. Instant Meeting Extension: A logic gate allowing recruiters to add 2 minutes to a session if they need more time, requiring mutual consent.
+19. Recruiter "Follow-up" Flagging: A function to tag a student as "High Priority" for post-fair interviews during the live
+21. Chat Transcript Archiver: Securely logging text interactions for later review by recruiters (subject to privacy laws).
+D. Recruiter Evaluation & Dashboards (7 Functions)
+22. Candidate Multi-Criteria Rating Scale: A complex form logic allowing recruiters to score candidates on
+"Communication," "Technical Skills," and "Culture Fit."
+23. Collaborative Recruiter Notes: Allowing different representatives from the same company to see each other's notes on a specific student.
+24. Bulk "Digital Drop" Processor: A tool for recruiters to download all resumes dropped at their booth into a single categorized ZIP file post-fair.
+25. "Hire-ability" Analytics Dashboard: Visualizing the talent pool at the fair based on GPA, majors, and skills.
+26. Automated "Thank You" Emailer: Logic to send personalized, bulk follow-up emails to all students who visited the
+27. Interview Invitation Scheduler: Integrating a recruiter's calendar to propose formal interview slots to top candidates immediately after the fair.
+E. University Administration & Oversight (7 Functions)
+29. Fair Master-Schedule Builder: Logic to manage multiple simultaneous career days (e.g., "Engineering Day" vs.
+31. Real-Time Fair Traffic Visualization: An admin-only map showing which booths are currently "Hot" (high queues)
+33. Fair Success Reporting: Automatically generating reports on "Total Chats," "Average Rating," and "Total Resumes
+Dropped."
+34. Employer Vetting Workflow: A multi-stage approval process for companies applying to participate in the fair.
+37. Time-Zone Synchronization Logic: Ensuring students and international recruiters see the fair start/end times in their respective local times.
+40. Notification Escalation Engine: Logic that sends fair reminders via Web Push, then Email, then SMS for high-priority
