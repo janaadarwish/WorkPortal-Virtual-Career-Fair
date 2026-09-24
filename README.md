@@ -31,6 +31,20 @@ WorkPortal is a Virtual Career Fair platform designed to connect students/job se
 - JavaScript
 - SQL
 
+- 
+
+## 👥 The Development Team
+
+| Name | GitHub Profile |
+| :--- | :--- |
+| **Haidi** | [@HAIDI-A](https://github.com/HAIDI-A) |
+| **Nour Ehab** | [@nour-ehab](https://github.com/nour-ehab) |
+| **Noha Emad** | [@Nohaemad19](https://github.com/Nohaemad19) |
+| **Jana Amin** | [@janaadarwish](https://github.com/janaadarwish) |
+| **menna mohamed** | [@mennamohamed4](https://github.com/mennamohamed4) |
+
+---
+
 ## 📁 Project Structure
 
 ```text
