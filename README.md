@@ -31,8 +31,6 @@ WorkPortal is a Virtual Career Fair platform designed to connect students/job se
 - JavaScript
 - SQL
 
-- 
-
 ## 👥 The Development Team
 
 | Name | GitHub Profile |
