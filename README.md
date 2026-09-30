@@ -42,7 +42,7 @@ WorkPortal is a Virtual Career Fair platform designed to connect students/job se
 | **Noha Emad** | [@Nohaemad19](https://github.com/Nohaemad19) |
 | **Jana Amin** | [@janaadarwish](https://github.com/janaadarwish) |
 | **menna mohamed** | [@mennamohamed4](https://github.com/mennamohamed4) |yasmin-mohamed55
-| **yasmin mohammed** | [@myasmin-mohamed55](https://github.com/yasmin-mohamed55) |
+| **yasmin mohammed** | [@yasmin-mohamed55](https://github.com/yasmin-mohamed55) |
 
 ---
 
